@@ -14,7 +14,6 @@ const cardStyle = {
   boxShadow: '0 2px 16px #e0e0e0',
   background: '#fff',
   display: 'flex',
-  flexDirection: 'column',
   gap: 20,
   alignItems: 'center',
 };

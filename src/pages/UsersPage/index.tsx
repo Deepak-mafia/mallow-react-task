@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import  { useEffect, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchUsers, createUser, updateUser, deleteUser } from '../../services/userService';
 import Loader from '../../components/common/Loader';
@@ -133,13 +133,13 @@ const UsersPage = () => {
           />
         </div>
         {/* Right: Heading, Search, Create, Toggle */}
-        <xdiv style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
          
           <button onClick={openCreateModal} style={{ padding: '8px 18px', background: '#6c63ff', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 500, fontSize: 16 }}>Create User</button>
           {/* <button onClick={() => setView('card')} style={{ fontWeight: view === 'card' ? 'bold' : 'normal', background: view === 'card' ? '#f5f6fa' : '#fff', border: '1px solid #eee', borderRadius: 6, padding: '8px 14px' }}>Card</button> */}
           {/* <button onClick={() => setView('list')} style={{ fontWeight: view === 'list' ? 'bold' : 'normal', background: view === 'list' ? '#f5f6fa' : '#fff', border: '1px solid #eee', borderRadius: 6, padding: '8px 14px' }}>Table</button> */}
         <button onClick={handleLogout} style={{ color: '#ff4d4f', background: 'none', border: 'none', fontWeight: 500, fontSize: 16, cursor: 'pointer' }}>Logout</button>
-        </xdiv>
+        </div>
       </div>
       {/* Logout button */}
       <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0 20px 10px 20px' }}>
