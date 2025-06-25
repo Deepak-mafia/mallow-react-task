@@ -122,10 +122,10 @@ const UsersPage = () => {
   return (
     <div>
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: 20, background: '#fff', boxShadow: '0 2px 8px #eee', marginBottom: 24 }}>
+      <div className="flex items-center justify-between p-5 bg-white shadow-md mb-6">
         {/* Left: Logo */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-        <h2 style={{ margin: 0, fontWeight: 600, fontSize: 24 }}>Users</h2>
+        <div className="flex items-center gap-4">
+          <h2 className="m-0 font-semibold text-2xl">Users</h2>
           <SearchInput
             value={search}
             onChange={e => setSearch(e.target.value)}
@@ -133,81 +133,78 @@ const UsersPage = () => {
           />
         </div>
         {/* Right: Heading, Search, Create, Toggle */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-         
-          <button onClick={openCreateModal} style={{ padding: '8px 18px', background: '#6c63ff', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 500, fontSize: 16 }}>Create User</button>
-          {/* <button onClick={() => setView('card')} style={{ fontWeight: view === 'card' ? 'bold' : 'normal', background: view === 'card' ? '#f5f6fa' : '#fff', border: '1px solid #eee', borderRadius: 6, padding: '8px 14px' }}>Card</button> */}
-          {/* <button onClick={() => setView('list')} style={{ fontWeight: view === 'list' ? 'bold' : 'normal', background: view === 'list' ? '#f5f6fa' : '#fff', border: '1px solid #eee', borderRadius: 6, padding: '8px 14px' }}>Table</button> */}
-        <button onClick={handleLogout} style={{ color: '#ff4d4f', background: 'none', border: 'none', fontWeight: 500, fontSize: 16, cursor: 'pointer' }}>Logout</button>
+        <div className="flex items-center gap-4">
+          <button onClick={openCreateModal} className="px-4 py-2 bg-indigo-500 text-white border-none rounded-lg font-medium text-base">Create User</button>
+          <button onClick={handleLogout} className="text-red-500 bg-transparent border-none font-medium text-base cursor-pointer">Logout</button>
         </div>
       </div>
       {/* Logout button */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0 20px 10px 20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <button onClick={() => setView('card')} style={{ fontWeight: view === 'card' ? 'bold' : 'normal', background: view === 'card' ? '#f5f6fa' : '#fff', border: '1px solid #eee', borderRadius: 6, padding: '8px 14px' }}>Card</button>
-          <button onClick={() => setView('list')} style={{ fontWeight: view === 'list' ? 'bold' : 'normal', background: view === 'list' ? '#f5f6fa' : '#fff', border: '1px solid #eee', borderRadius: 6, padding: '8px 14px' }}>Table</button>
+      <div className="flex justify-between px-5 pb-2.5">
+        <div className="flex items-center gap-4">
+          <button onClick={() => setView('card')} className={`font-bold ${view === 'card' ? 'bg-[#f5f6fa]' : 'bg-white'} border border-gray-200 rounded-md px-3.5 py-2`}>Card</button>
+          <button onClick={() => setView('list')} className={`font-bold ${view === 'list' ? 'bg-[#f5f6fa]' : 'bg-white'} border border-gray-200 rounded-md px-3.5 py-2`}>Table</button>
         </div>
       </div>
       {/* Main Content */}
       {loading ? (
         <Loader />
       ) : error ? (
-        <div style={{ color: 'red', textAlign: 'center' }}>{error}</div>
+        <div className="text-red-500 text-center">{error}</div>
       ) : view === 'card' ? (
         <>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 32, justifyContent: 'center', padding: 24 }}>
+          <div className="flex flex-wrap gap-8 justify-center p-6">
             {filteredUsers.map(user => (
               <div
                 key={user.id}
-                style={{ boxShadow: '0 2px 8px #ccc', borderRadius: 12, padding: 32, minWidth: 260, textAlign: 'center', background: '#fff', position: 'relative' }}
+                className="shadow-md rounded-xl p-8 min-w-[260px] text-center bg-white relative"
               >
-                <img src={user.avatar} alt={getUserName(user)} style={{ width: 90, height: 90, borderRadius: '50%', objectFit: 'cover', marginBottom: 16 }} />
-                <div style={{ fontWeight: 600, fontSize: 24, marginBottom: 8 }}>{getUserName(user)}</div>
-                <div style={{ color: '#555', fontSize: 18, marginBottom: 16 }}>{user.email}</div>
-                <div style={{ display: 'flex', justifyContent: 'center', gap: 12 }}>
-                  <button onClick={() => openEditModal(user)} style={{ background: '#6c63ff', color: '#fff', borderRadius: '50%', width: 36, height: 36, border: 'none', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✏️</button>
-                  <button onClick={() => handleDelete(user)} style={{ background: '#ff4d4f', color: '#fff', borderRadius: '50%', width: 36, height: 36, border: 'none', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🗑️</button>
+                <img src={user.avatar} alt={getUserName(user)} className="w-[90px] h-[90px] rounded-full object-cover mb-4 mx-auto" />
+                <div className="font-semibold text-2xl mb-2">{getUserName(user)}</div>
+                <div className="text-gray-700 text-lg mb-4">{user.email}</div>
+                <div className="flex justify-center gap-3">
+                  <button onClick={() => openEditModal(user)} className="bg-indigo-500 text-white rounded-full w-9 h-9 border-none text-lg flex items-center justify-center">✏️</button>
+                  <button onClick={() => handleDelete(user)} className="bg-red-500 text-white rounded-full w-9 h-9 border-none text-lg flex items-center justify-center">🗑️</button>
                 </div>
               </div>
             ))}
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', margin: '24px 0' }}>
+          <div className="flex justify-center my-6">
             <Pagination current={page} total={totalPages} onChange={setPage} />
           </div>
         </>
       ) : (
         <>
-          <div style={{ background: '#fff', borderRadius: 12, margin: '0 auto', maxWidth: 900, padding: 24, boxShadow: '0 2px 8px #ccc' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <div className="bg-white rounded-xl mx-auto max-w-[900px] p-6 shadow-md">
+            <table className="w-full border-collapse">
               <thead>
-                <tr style={{ background: '#f5f5f5' }}>
-                  <th style={{ padding: 12, textAlign: 'left' }}>Email</th>
-                  <th style={{ padding: 12, textAlign: 'left' }}>First Name</th>
-                  <th style={{ padding: 12, textAlign: 'left' }}>Last Name</th>
-                  <th style={{ padding: 12, textAlign: 'left' }}>Action</th>
+                <tr className="bg-gray-100">
+                  <th className="p-3 text-left">Email</th>
+                  <th className="p-3 text-left">First Name</th>
+                  <th className="p-3 text-left">Last Name</th>
+                  <th className="p-3 text-left">Action</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredUsers.map(user => (
-                  <tr key={user.id} style={{ borderBottom: '1px solid #eee' }}>
-                    <td style={{ padding: 12 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <img src={user.avatar} alt={getUserName(user)} style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover' }} />
-                        <span style={{ color: '#2d6cdf', fontWeight: 500 }}>{user.email}</span>
+                  <tr key={user.id} className="border-b border-gray-200">
+                    <td className="p-3">
+                      <div className="flex items-center gap-2">
+                        <img src={user.avatar} alt={getUserName(user)} className="w-9 h-9 rounded-full object-cover" />
+                        <span className="text-blue-600 font-medium">{user.email}</span>
                       </div>
                     </td>
-                    <td style={{ padding: 12 }}>{user.first_name}</td>
-                    <td style={{ padding: 12 }}>{user.last_name}</td>
-                    <td style={{ padding: 12 }}>
-                      <button onClick={() => openEditModal(user)} style={{ background: '#6c63ff', color: '#fff', borderRadius: 4, padding: '6px 16px', border: 'none', marginRight: 8 }}>Edit</button>
-                      <button onClick={() => handleDelete(user)} style={{ background: '#ff4d4f', color: '#fff', borderRadius: 4, padding: '6px 16px', border: 'none' }}>Delete</button>
+                    <td className="p-3">{user.first_name}</td>
+                    <td className="p-3">{user.last_name}</td>
+                    <td className="p-3">
+                      <button onClick={() => openEditModal(user)} className="bg-indigo-500 text-white rounded px-4 py-1.5 border-none mr-2">Edit</button>
+                      <button onClick={() => handleDelete(user)} className="bg-red-500 text-white rounded px-4 py-1.5 border-none">Delete</button>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', margin: '24px 0' }}>
+          <div className="flex justify-center my-6">
             <Pagination current={page} total={totalPages} onChange={setPage} />
           </div>
         </>

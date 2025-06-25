@@ -45,14 +45,15 @@ const UserModal: React.FC<UserModalProps> = ({ open, onClose, onSubmit, initialD
 
   return (
     <Modal open={open} onClose={onClose}>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 12, width: 300 }}>
-        <h3>{initialData ? 'Edit User' : 'Create User'}</h3>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-[300px]">
+        <h3 className="text-lg font-semibold mb-2">{initialData ? 'Edit User' : 'Create User'}</h3>
         <input
           name="first_name"
           placeholder="First Name"
           value={form.first_name}
           onChange={handleChange}
           required
+          className="border rounded px-3 py-2 mb-1"
         />
         <input
           name="last_name"
@@ -60,6 +61,7 @@ const UserModal: React.FC<UserModalProps> = ({ open, onClose, onSubmit, initialD
           value={form.last_name}
           onChange={handleChange}
           required
+          className="border rounded px-3 py-2 mb-1"
         />
         <input
           name="email"
@@ -68,15 +70,17 @@ const UserModal: React.FC<UserModalProps> = ({ open, onClose, onSubmit, initialD
           value={form.email}
           onChange={handleChange}
           required
+          className="border rounded px-3 py-2 mb-1"
         />
         <input
           name="avatar"
           placeholder="Photo Link (optional)"
           value={form.avatar}
           onChange={handleChange}
+          className="border rounded px-3 py-2 mb-1"
         />
-        {error && <div style={{ color: 'red' }}>{error}</div>}
-        <button type="submit">{initialData ? 'Update' : 'Create'}</button>
+        {error && <div className="text-red-500 text-sm">{error}</div>}
+        <button type="submit" className="mt-2 bg-indigo-500 text-white rounded px-4 py-2">{initialData ? 'Update' : 'Create'}</button>
       </form>
     </Modal>
   );
